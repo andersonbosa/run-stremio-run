@@ -1,7 +1,7 @@
 # Makefile for building and running a Dockerized application
 
 # Docker image name and version
-IMAGE_NAME := ran-stremio-ran
+IMAGE_NAME := run-stremio-run
 IMAGE_VERSION := unstable
 CONTAINER_NAME := $(IMAGE_NAME)-container
 

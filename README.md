@@ -25,7 +25,7 @@ This simple web application allows users to dynamically add and redirect to URLs
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/andersonbosa/ran-stremio-ran.git
+git clone https://github.com/andersonbosa/run-stremio-run.git
 cd url-redirection-app
 ```
 

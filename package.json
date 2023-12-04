@@ -1,5 +1,5 @@
 {
-  "name": "ran-stremio-ran",
+  "name": "run-stremio-run",
   "version": "1.0.0",
   "description": "Stores data from API and displays on a page for other devices to access",
   "main": "src/index.js",
