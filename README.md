@@ -33,7 +33,7 @@ This simple web application allows users to dynamically add and redirect to URLs
 
 ```bash
 git clone https://github.com/andersonbosa/run-stremio-run.git
-cd url-redirection-app
+cd run-stremio-run
 make up
 ``` 
 
@@ -42,7 +42,7 @@ make up
 
 ```bash
 git clone https://github.com/andersonbosa/run-stremio-run.git
-cd url-redirection-app
+cd run-stremio-run
 ```
 
 2. Install dependencies:
