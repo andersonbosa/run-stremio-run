@@ -20,8 +20,22 @@ This simple web application allows users to dynamically add and redirect to URLs
 
 - Node.js and npm installed on your machine.
 
-### Installation
+### Additional resources
 
+- Install Stremio addons from https://stremio-addons.netlify.app
+  > I recommend at least Torrentio
+- Browser script [violentMonkey.user.js](docs/violentMonkey.user.js)
+
+### Installation
+#### Docker (recommended)
+
+```bash
+git clone https://github.com/andersonbosa/run-stremio-run.git
+cd url-redirection-app
+make up
+``` 
+
+#### Manually
 1. Clone the repository:
 
 ```bash

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUN STREMIO, RUN!!</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="assets/main.css">
+  <link rel="stylesheet" type="text/css" href="assets/external.css">
+  <script src="assets/script.js"></script>
+</head>
+
+<body>
+  <div>
+    <section>
+      <br>
+      <br>
+      <br>
+      <h1>RUN STREMIO, RUN!!</h1>
+      <br>
+      <br>
+      <br>
+      <a href="<%= stremioLocalURL %>">
+        <div class="rainbow">
+          -&gt; Click here to access Web Stremio Service with your local Stremio Server &lt;-
+        </div>
+      </a>
+      <br>
+      <br>
+      <br>
+    </section>
+    <details>
+      <summary>More options here</summary>
+      <br>
+
+      <section>
+        <h3>Replace domain/ip of  </h3>
+        <br>
+        <input type="text" id="domainInput" placeholder="Enter a domain to replace the domain of listed URLs">
+        <br>
+        <a href="#" onclick="updateHref()" class="fakeButton">Update domain</a>
+        <br>
+        <br>
+        <br>
+      </section>
+
+      <section>
+        <form id="urlForm">
+          <h3>Store new URL </h3>
+          <br>
+          <input type="text" id="urlInput" placeholder="Enter the URL to be saved. Eample: http://localhost:11470">
+          <br>
+          <br>
+          <a type="button" onclick="apiAddURL()" class="fakeButton">Add URL</a>
+        </form>
+        <br>
+        <br>
+        <br>
+      </section>
+
+      <section>
+        <h3>Available URLs</h3>
+        <h6>Click in a URL to redirect you</h6>
+        <br>
+        <section class="actionButtons">
+          <a href="#" onclick="apiResetURls()" class="fakeButton">Reset</a>
+          <a href="#" onclick="apiReloadData()" class="fakeButton">Reload</a>
+        </section>
+        <ol id="urlList"></ol>
+        <br>
+        <br>
+        <br>
+      </section>
+  </div>
+  </details>
+
+</body>
+
+</html>
