@@ -13,7 +13,7 @@ This is a simple web application that allows users to connect their local Stremi
 
 It is built using Node.js with Express on the server-side and HTML with JavaScript on the client-side. Everything was tied using docker and docker compose
 
-![Video demo](docs/demo.webm)
+[Video demo](docs/demo.webm)
 
 ## Getting Started
 
