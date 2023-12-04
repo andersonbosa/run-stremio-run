@@ -7,7 +7,7 @@
     "stremio"
   ],
   "author": "Anderson Bosa < @t4inha > ",
-  "license": "MIT",
+  "license": "CC0",
   "engines": {
     "node": "20.x"
   },
