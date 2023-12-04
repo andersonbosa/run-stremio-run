@@ -1,6 +1,8 @@
-# RAN STREMIO RAN
+# RUN STREMIO RUN!!
 
-> URL Redirection App
+## Goal
+
+Make a Stremio server available on the user's machine and a page to make them connect to the server with 1 click.
 
 ## Overview
 
