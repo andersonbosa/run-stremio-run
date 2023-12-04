@@ -14,18 +14,19 @@ const STREMIO_SERVER_IP = '172.17.0.2' // Change as you need
 const USERNAME = 'admin' // For demonstration purposes
 const USERPASSWORD = 'password123'
 
+function getBasicAuth () {
+  return btoa(`${USERNAME}:${USERPASSWORD}`)
+}
+
+function getAPIAddress () {
+  return 'localhost:8080'
+}
 
 function updateURlDomain (originalUrl, newDomain) {
   const url = new URL(originalUrl)
   url.hostname = newDomain
   return url.href
 }
-
-
-function getAPIAddress () {
-  return 'localhost:8080'
-}
-
 
 function mainScript () {
   document.addEventListener('click', async event => {
@@ -43,7 +44,7 @@ function mainScript () {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(`${USERNAME}:${USERPASSWORD}`) // For demonstration purposes
+        'Authorization': 'Basic ' + getBasicAuth() // For demonstration purposes
       },
       body: JSON.stringify({ url: urlToStore })
     })

@@ -12,6 +12,7 @@ DOCKER_RUN := $(DOCKER) run
 DOCKER_EXEC := $(DOCKER) exec
 DOCKER_RM := $(DOCKER) rm
 DOCKER_RMI := $(DOCKER) rmi
+DOCKER_LOGS := $(DOCKER) logs
 
 
 # Build the Docker image
@@ -20,11 +21,13 @@ build:
 
 # Run the Docker container
 run:
-	$(DOCKER_RUN) --rm -p 8080:80 --name $(CONTAINER_NAME) $(IMAGE_NAME):$(IMAGE_VERSION)
+	$(DOCKER_RUN) --rm -p 8080:8080 --name $(CONTAINER_NAME) $(IMAGE_NAME):$(IMAGE_VERSION)
 
 # Execute a command inside the running container
 exec:
 	$(DOCKER_EXEC) -it $(CONTAINER_NAME) sh
+logs :
+	$(DOCKER_LOGS) --follow $(CONTAINER_NAME)
 
 # Stop and remove the Docker container
 stop:
@@ -36,7 +39,7 @@ clean:
 	$(DOCKER_RMI) $(IMAGE_NAME):$(IMAGE_VERSION)
 
 # Rebuild the Docker image and run the container
-rebuild: clean build run
+rebuild: clean build
 
 # Default target
 .DEFAULT_GOAL := build

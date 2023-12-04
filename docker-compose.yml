@@ -1,0 +1,23 @@
+version: '3'
+services:
+  express-app:
+    build:
+      context: .
+      dockerfile: Dockerfile  
+    ports:
+      - "8080:8080" 
+    networks:
+      - exposed_network
+    depends_on:
+      - stremio-server
+
+  stremio-server:
+    image: stremio/server:latest
+    ports:
+      - "11470:11470"
+    networks:
+      - exposed_network
+
+networks:
+  exposed_network:
+    driver: bridge

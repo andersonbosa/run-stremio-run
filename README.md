@@ -40,6 +40,7 @@ npm install
 ```bash
 npm start
 ```
+
 The application will be available at http://localhost:8080 by default.
 
 ## Usage
@@ -53,9 +54,13 @@ The application will be available at http://localhost:8080 by default.
 
 ### Browser script (Made to be used with ViolentMonkey)
 
-When you click the "Copy Stream Link" button (Image 1) the script will make the request for API saving the URL and displaying on the homepage.
-> imagem 1
+When you click the "Copy Stream Link" button (vide image 1) the script will make the 
+request for API store the URL and displaying on the homepage (default http://localhost:8080).
+> Image 1: Copy stream link from https://web.stremio.com
 > ![Alt text](docs/image.png)
+
+> Image 2: URL stored via API
+>![Alt text](docs/image2.png)
 
 ### Configuration
 Authentication: User authentication can be enabled or disabled by modifying the SHOULD_AUTHENTICATE variable in src/index.js.

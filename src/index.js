@@ -6,9 +6,11 @@ const morgan = require('morgan')
 
 const app = express()
 const PORT = 8080
-const PUBLIC_PATH = path.join(__dirname, '..', 'public')
-const URLS_JSON_PATH = path.join(PUBLIC_PATH, 'urls.json')
+const STREMIO_SERVER_PORT = 11470
 const SHOULD_AUTHENTICATE = true
+
+const PUBLIC_PATH = path.join(__dirname, '..', 'public')
+const URLS_JSON_PATH = path.join(PUBLIC_PATH, 'data.json')
 
 app.use(express.static(PUBLIC_PATH))
 app.use(cors())
@@ -21,7 +23,12 @@ const users = [
   // Add more users as needed
 ]
 
-// Middleware to check user authentication
+/**
+ * Middleware to check user authentication.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {function} next - Express next middleware function.
+ */
 const authenticateUser = (req, res, next) => {
   if (!SHOULD_AUTHENTICATE) {
     return next()
@@ -44,11 +51,43 @@ const authenticateUser = (req, res, next) => {
   next()
 }
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(PUBLIC_PATH, 'index.html'))
+/**
+ * Add a URL to the JSON database file.
+ * @param {string} incomingURL - The URL to add to the database.
+ */
+async function addUrlToJSONDatabase (incomingURL) {
+  console.log(`Adding ${incomingURL} to the database`)
+
+  const currentLocalURLs = await fs.readFile(URLS_JSON_PATH, 'utf-8')
+  const updatedLocalURLsSet = new Set(JSON.parse(currentLocalURLs))
+
+  // Check if the URL already exists
+  if (updatedLocalURLsSet.has(incomingURL)) {
+    return // URL already exists
+  }
+
+  updatedLocalURLsSet.add(incomingURL)
+
+  const updatedLocalURLsArr = Array.from(updatedLocalURLsSet)
+  await fs.writeFile(URLS_JSON_PATH, JSON.stringify(updatedLocalURLsArr, null, 2))
+}
+
+/**
+ * Handle the root route and add the host IP to the database.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+app.get('/', async (req, res) => {
+  const hostIP = req.ip
+  await addUrlToJSONDatabase(`http://${hostIP}:${STREMIO_SERVER_PORT}`)
+  return res.sendFile(path.join(PUBLIC_PATH, 'index.html', { hostIP }))
 })
 
-// Protected route for adding URLs
+/**
+ * Handle the route for adding URLs.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 app.post('/api/v1/url/add/:url?', authenticateUser, async (req, res) => {
   try {
     let incomingURL = req.body.url || req.params.url
@@ -57,18 +96,7 @@ app.post('/api/v1/url/add/:url?', authenticateUser, async (req, res) => {
       return res.status(400).json({ success: false, message: 'URL is required in the request body or as a parameter' })
     }
 
-    const currentLocalURLs = await fs.readFile(URLS_JSON_PATH, 'utf-8')
-    const updatedLocalURLsSet = new Set(JSON.parse(currentLocalURLs))
-
-    // Check if the URL already exists
-    if (updatedLocalURLsSet.has(incomingURL)) {
-      return res.status(400).json({ success: false, message: 'URL already exists' })
-    }
-
-    updatedLocalURLsSet.add(incomingURL)
-
-    const updatedLocalURLsArr = Array.from(updatedLocalURLsSet)
-    await fs.writeFile(URLS_JSON_PATH, JSON.stringify(updatedLocalURLsArr, null, 2))
+    await addUrlToJSONDatabase(incomingURL)
 
     return res.json({ success: true, message: 'URL added successfully' })
   } catch (error) {
@@ -77,6 +105,27 @@ app.post('/api/v1/url/add/:url?', authenticateUser, async (req, res) => {
   }
 })
 
+/**
+ * Handle the route for resetting URLs.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+app.post('/api/v1/url/reset', authenticateUser, async (req, res) => {
+  try {
+    // Reset the URLs to an empty array
+    const emptyUrls = []
+    await fs.writeFile(URLS_JSON_PATH, JSON.stringify(emptyUrls, null, 2))
+
+    return res.json({ success: true, message: 'URLs reset successfully' })
+  } catch (error) {
+    console.error('Error resetting URLs:', error)
+    return res.status(500).json({ success: false, message: 'Internal server error', error: error.message })
+  }
+})
+
+/**
+ * Start the server and listen on the specified port.
+ */
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
 })

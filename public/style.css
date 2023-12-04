@@ -40,7 +40,14 @@ a {
 input {
   width: 100%;
   max-width: 512px;
+
   text-align: center;
+  font-weight: bolder;
+  font-family: 'Courier New', Courier, monospace;
+  
+  background-color: #222;
+  color: #fff;
+  border: none;
 }
 
 .fakeButton {
@@ -49,8 +56,14 @@ input {
 }
 
 .fakeButton:hover {
-  transition-duration: 0.8s;
-  border: 3px solid #a461fb;
+  transition-duration: 1s;
+  border: 2px solid #a461fb;
   border-radius: 40px;
   padding: 4px 64px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
 }
