@@ -1,4 +1,5 @@
 [
-  "http://192.168.0.5:8080/example",
-  "http://192.168.0.5:3333/example2"
+  "magnet:?xt=urn:btih:34f7582a4d905f8dcb6d4563e609b84a8f0554bd&dn=Torrentio\n1080p",
+  "http://172.17.0.2:11470/34f7582a4d905f8dcb6d4563e609b84a8f0554bd/1",
+  "http://192.168.0.5:11470/34f7582a4d905f8dcb6d4563e609b84a8f0554bd/1"
 ]
