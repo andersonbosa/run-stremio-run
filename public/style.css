@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #61dafb;
+  /* React blue color */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  max-width: 512px;
+  text-align: center;
+}
+
+.fakeButton {
+  border: 2px dashed #61dafb;
+  padding: 4px 16px;
+}
+
+.fakeButton:hover {
+  transition-duration: 0.8s;
+  border: 3px solid #a461fb;
+  border-radius: 40px;
+  padding: 4px 64px;
+}

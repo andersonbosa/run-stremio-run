@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Redirection</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script>
+    async function getUrlsFromJSON() {
+      try {
+        // Fetch URLs from JSON file
+        const response = await fetch('urls.json');
+        const data = await response.json();
+
+        // Populate the list with URLs
+        const urlList = document.getElementById('urlList');
+
+        data.forEach(url => {
+          const listItem = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = url;
+          listItem.appendChild(link);
+          urlList.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error('Error fetching URLs:', error);
+      }
+    }
+
+    // Function to add a URL
+    function addUrl() {
+      const urlInput = document.getElementById('urlInput');
+      const url = urlInput.value.trim();
+
+      if (url) {
+        // Send a POST request to add the URL
+        fetch(`/api/v1/url/add`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url })
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            // Refresh the page or update the UI as needed
+            getUrlsFromJSON(); // Update the list after adding a new URL
+          })
+          .catch(error => console.error('Error adding URL:', error));
+      }
+    }
+
+    // Function to update href property based on user input
+    function updateHref() {
+      const domainInput = document.getElementById('domainInput');
+      const domain = domainInput.value.trim();
+
+      // Update the href property of the anchor tag with the user input
+      const anchorTags = document.querySelectorAll('#urlList a');
+      anchorTags.forEach(tag => {
+        tag.href = `${tag.href.split('//')[0]}//${domain}${tag.pathname}${tag.search}${tag.hash}`;
+      });
+    }
+
+    // Load URLs on document load
+    window.onload = () => {
+      getUrlsFromJSON();
+    };
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Select a URL to Redirect</h1>
+  </header>
+
+  <div>
+    <section>
+      <form id="urlForm">
+        <input type="text" id="urlInput" placeholder="http://example.com">
+        <input type="button" value="Add URL" onclick="addUrl()">
+      </form>
+    </section>
+    <br>
+
+    <section>
+      <input type="text" id="domainInput" placeholder="Enter domain to replace the links">
+    </section>
+    <br>
+    <!-- Anchor tag with onclick event to trigger the updateHref function -->
+    <a href="#" class="fakeButton" onclick="updateHref()">Update domain</a>
+  </div>
+  <br>
+  <ul id="urlList"></ul>
+</body>
+
+</html>
