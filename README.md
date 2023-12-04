@@ -5,7 +5,6 @@
 - [x] Provide local Stremio server
 - [x] Make the user obtain a connection between Stremio Web and Local Stremio Server with **1 click**.
 
-
 ## Overview
 
 > If you like the project, give it a Star! 🌟
@@ -13,6 +12,8 @@
 This is a simple web application that allows users to connect their local Stremio Server to Stremio Web to watch what they want.
 
 It is built using Node.js with Express on the server-side and HTML with JavaScript on the client-side. Everything was tied using docker and docker compose
+
+![Video demo](docs/demo.webm)
 
 ## Getting Started
 
