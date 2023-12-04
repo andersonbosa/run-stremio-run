@@ -16,7 +16,7 @@ DOCKER_LOGS := $(DOCKER) logs
 
 # Docker-compose commands
 DOCKER_COMPOSE := $(DOCKER) compose
-DOCKER_COMPOSE_BUILD := $(DOCKER_COMPOSE) build --no-cache
+DOCKER_COMPOSE_BUILD := $(DOCKER_COMPOSE) build 
 DOCKER_COMPOSE_UP := $(DOCKER_COMPOSE) up
 
 # Build the Docker image
