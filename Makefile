@@ -47,7 +47,6 @@ rebuild: clean build
 
 start:
 	$(DOCKER_COMPOSE_BUILD)
-	open 'http://localhost:8080'
 	$(DOCKER_COMPOSE_UP)
 
 # Default target
