@@ -1,6 +1,5 @@
-version: '3'
-
 services:
+
   express-app:
     build:
       context: .
@@ -11,6 +10,9 @@ services:
       - exposed_network
     depends_on:
       - stremio-server
+    # volumes:
+    #   - ./:/usr/src/app:ro
+      # - node_modules
 
   stremio-server:
     image: stremio/server:latest

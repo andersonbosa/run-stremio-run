@@ -1,11 +1,11 @@
 # RUN STREMIO RUN!!
 
-## Goals
+# Goals
 
 - [x] Provide local Stremio server
 - [x] Make the user obtain a connection between Stremio Web and Local Stremio Server with **1 click**.
 
-## Overview
+# Overview
 
 > If you like the project, give it a Star! 🌟
 
@@ -15,7 +15,7 @@ It is built using Node.js with Express on the server-side and HTML with JavaScri
 
 [demo.webm](https://github.com/andersonbosa/run-stremio-run/assets/8931900/44d2c612-4ff3-4fb1-b1a0-5e47a4766ccb)
 
-## Getting Started
+# Getting Started
 
 ### Prerequisites
 
@@ -28,7 +28,7 @@ It is built using Node.js with Express on the server-side and HTML with JavaScri
   - I recommend you install at least **Torrentio**
 <!-- - Browser script [violentMonkey.user.js](docs/violentMonkey.user.js) -->
 
-### Installation
+# Development
 
 The application will be available at http://localhost:8080 by default.
 
