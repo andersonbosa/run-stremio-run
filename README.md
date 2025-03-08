@@ -24,7 +24,7 @@ It is built using Node.js with Express on the server-side and HTML with JavaScri
 
 ### Additional resources
 
-- Install Stremio addons from https://stremio-addons.netlify.app
+- Install Stremio addons from https://stremio-addons.com/
   - I recommend you install at least **Torrentio**
 <!-- - Browser script [violentMonkey.user.js](docs/violentMonkey.user.js) -->
 
