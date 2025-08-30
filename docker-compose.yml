@@ -1,18 +1,29 @@
 services:
 
-  express-app:
+  connection-helper:
     build:
-      context: .
-      dockerfile: Dockerfile  
+      context: ./apps/connection-helper
+      dockerfile: Dockerfile
     ports:
-      - "8080:8080" 
+      - "8080:8080"
     networks:
       - exposed_network
     depends_on:
       - stremio-server
     # volumes:
     #   - ./:/usr/src/app:ro
-      # - node_modules
+    #   - node_modules
+
+  webstremio:
+    build:
+      context: ./apps/webstremio
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:3000"
+    networks:
+      - exposed_network
+    depends_on:
+      - stremio-server
 
   stremio-server:
     image: stremio/server:latest
